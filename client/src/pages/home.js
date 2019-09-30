@@ -30,7 +30,6 @@ class Home extends React.Component {
       console.log(this.state.zipcodes)
     });
     //All db contents should now be stores in components state and ready for
-    RealDataBase.currentZip = SearchComponent.toString
   };
 
 
