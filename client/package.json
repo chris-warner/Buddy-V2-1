@@ -1,0 +1,33 @@
+{
+  "name": "buddy",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:3001/",
+  "dependencies": {
+    "firebase": "6.3.5",
+    "react": "^16.6.3",
+    "react-bootstrap": "^1.0.0-beta.12",
+    "react-dom": "^16.6.3",
+    "react-facebook-login": "^4.1.1",
+    "react-google-login": "^5.0.5",
+    "react-google-maps": "^9.4.5",
+    "react-player": "^1.13.0",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "^3.1.2",
+    "semantic-ui-calendar-react": "^0.15.3",
+    "semantic-ui-react": "0.87.3",
+    "typescript": "^3.6.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
