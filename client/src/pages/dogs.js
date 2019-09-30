@@ -6,39 +6,33 @@ import { CardDeck, Card } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import fakeDogs from '../FakeDataBase';
 import Map from "../components/GoogleMap/map";
-import axios from 'axios';
-import realDogs from '../RealDataBase';
-import RealDataBase from '../RealDataBase';
+
 class Dogs extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      results: [],
-      zip:'',
+      zip:[],
       dogs:[]
     };
   }
 
   componentDidMount() {
-    
-    // axios.get('http://localhost:8000/api/all').then(res => {
-    //   console.log(res);
-    //   this.setState({dogs:res.data.dogData});
-    //   console.log(this.state.dogs)
-    // });
+    //access props history with the next line.
+    const state = this.props.location.state
     this.setState({
-      zip:this.props.zip,
-      dogs:realDogs.getDogsByZip(RealDataBase.currentZip)
-  });
-  console.log(this.state.zip)
-  console.log(realDogs.getDogsByZip(RealDataBase.currentZip))
-}
+      dogs: this.props.location.state.dogs,
+      zip: this.props.location.search
+    });
+  }
 
   UNSAFE_componentWillMount() {
     this.setState({ results: this.createDogCardDecks()});
   }
 
   render() {
+    console.log(this.state.dogs);
+    console.log(this.state.zip);
+
     return (
       <div className="dog-page">
         <div className="myHeader">

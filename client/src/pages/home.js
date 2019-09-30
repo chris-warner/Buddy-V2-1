@@ -29,7 +29,8 @@ class Home extends React.Component {
       console.log(this.state.dogs);
       console.log(this.state.zipcodes)
     });
-    //All db contents should now be stores in components state and ready for use.
+    //All db contents should now be stores in components state and ready for
+    RealDataBase.currentZip = SearchComponent.toString
   };
 
 
@@ -40,7 +41,7 @@ class Home extends React.Component {
           <HeaderComponent></HeaderComponent>
         </div>
         <div className="mySearch">
-          <SearchComponent suggestions={this.state.zipcodes} ></SearchComponent>
+          <SearchComponent suggestions={this.state.zipcodes} dogs={this.state.dogs} ></SearchComponent>
         </div>
         <div className="myFooter">
           <FooterComponent></FooterComponent>
