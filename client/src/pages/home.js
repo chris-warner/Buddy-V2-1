@@ -11,16 +11,25 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dogs:[]
+      dogs:[],
+      zipcodes:[]
     };
   }
 
   componentDidMount() {
+    //temporary array to store db contents.
+    let zipcodeArray = [];
     axios.get('/api/dogs/').then(res => {
-      console.log(res.data);
-      this.setState({ dogs: res.data }) //simple value
+      this.setState({ dogs: res.data });
+      for (var i = 0; i < res.data.length; i++) {
+        zipcodeArray.push(res.data[i].shelterZipcode.toString())
+      }
+      //update state to temporary arraay.
+      this.setState({ zipcodes: zipcodeArray });
       console.log(this.state.dogs);
+      console.log(this.state.zipcodes)
     });
+    //All db contents should now be stores in components state and ready for use.
   };
 
 
@@ -31,7 +40,7 @@ class Home extends React.Component {
           <HeaderComponent></HeaderComponent>
         </div>
         <div className="mySearch">
-          <SearchComponent suggestions={shelterZipCodeArray} ></SearchComponent>
+          <SearchComponent suggestions={this.state.zipcodes} ></SearchComponent>
         </div>
         <div className="myFooter">
           <FooterComponent></FooterComponent>
