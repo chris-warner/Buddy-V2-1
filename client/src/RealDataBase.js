@@ -1,8 +1,7 @@
 //require('../src/assets/img/04.jpg')
 import axios from 'axios';
 
-let shelterZipCodes = [];
-let shelters = [];
+var shelterZipCodes = [];
 let dogs = [];
 let currentZip = "";
 

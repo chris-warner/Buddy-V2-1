@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { InputGroup, FormControl, Button } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom'
 import RealDataBase from '../../RealDataBase';
+
 class SearchComponent extends React.Component {
   static propTypes = {
     suggestions: PropTypes.instanceOf(Array)
@@ -17,14 +18,18 @@ class SearchComponent extends React.Component {
     super(props);
 
     this.state = {
-
-      userInput: ""
+      dogs:this.props.dogs,
+      userInput: "",
+      currentZip:0
     };
     this.handleClick = this.handleClick.bind(this);
   }
 
 
   onChange = e => {
+    //updates state from props on change.
+    this.setState({dogs:this.props.dogs})
+    console.log(this.state.dogs)
     const { suggestions } = this.props;
     const userInput = e.currentTarget.value;
 
@@ -48,7 +53,7 @@ class SearchComponent extends React.Component {
       activeSuggestion: 0,
       filteredSuggestions: [],
       showSuggestions: false,
-      userInput: e.currentTarget.innerText
+      userInput: e.currentTarget.innerText,
     });
   };
 
@@ -157,9 +162,15 @@ class SearchComponent extends React.Component {
   }
   
 
-  handleClick() {
+  handleClick(e) {
+   
+    console.log(this.state.userInput);
     RealDataBase.currentZip = this.state.userInput
-    this.props.history.push('/dogs');
+     this.props.history.push({
+      pathname: '/dogs',
+      search: this.state.userInput,
+      state: { dogs: this.state.dogs}
+    })
   }
 
 }
