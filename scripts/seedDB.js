@@ -9,7 +9,7 @@ const dogSeed = [
   {
     "name":"Tala",
     "age" : 2,
-    "breed": "pitbull",
+    "breed": "Golden Retriever",
     "weight": 60.0,
     "image": "https://drive.google.com/uc?id=1-iOz3YmiKXHlfmXEVXW1-sd84sdqu4LQ",
     "video": "url",
@@ -39,7 +39,7 @@ const dogSeed = [
     "video": "url",
     "shelterName": "Animal Rescue",
     "shelterStreet": "65 Dog place",
-    "shelterZipcode": 10409,
+    "shelterZipcode": 10410,
     "shelterCity": "New Brunswick",
     "shelterState": "New Jersey",
     "shelterCountry": "United States",

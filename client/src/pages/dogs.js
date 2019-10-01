@@ -4,15 +4,17 @@ import FooterComponent from "../components/Footer/footer";
 import DogComponent from "../components/Dog/dog";
 import { CardDeck, Card } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
-import fakeDogs from '../FakeDataBase';
+import FakeDataBase from '../FakeDataBase';
 import Map from "../components/GoogleMap/map";
+import API from '../utils/API.js';
 
 class Dogs extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
       zip:[],
-      dogs:[]
+      dogs:[],
+      results:[]
     };
   }
 
@@ -20,19 +22,16 @@ class Dogs extends React.Component {
     //access props history with the next line.
     const state = this.props.location.state
     this.setState({
-      dogs: this.props.location.state.dogs,
-      zip: this.props.location.search
+      dogs: API.getDogsByShelter('1014')
+      .then(res=>{this.createDogCardDecks()}),
+      zip: this.props.location.search,
+      results: this.createDogCardDecks()
     });
   }
 
-  UNSAFE_componentWillMount() {
-    this.setState({ results: this.createDogCardDecks()});
-  }
-
   render() {
-    console.log(this.state.dogs);
+    console.log(this.state.dogs[0]);
     console.log(this.state.zip);
-
     return (
       <div className="dog-page">
         <div className="myHeader">
@@ -40,6 +39,7 @@ class Dogs extends React.Component {
         </div>
         <div className="myDogs">
           {this.state.results}
+        
         </div>
         <div>
           <Map></Map>
@@ -50,30 +50,16 @@ class Dogs extends React.Component {
       </div>
     );
   }
+  
 
   createDogCardDecks = () => {
+    API.getDogsByShelter('1014').then(res=>{
     let table = []
     let k = 0
-    for (let i = 0; i < fakeDogs.length; i++) {
-      let children = []
-      for (let j = 0; j < 3; j++) {
-        if(fakeDogs[k])
-          children.push(<DogComponent 
-            key={k} 
-            dogsId={k} 
-            name={fakeDogs[k].name} 
-            age={fakeDogs[k].age} 
-            breed={fakeDogs[k].breed} image={fakeDogs[k].image}></DogComponent>)
-        else
-          children.push(<Card></Card>)
-        k++
-        i=k-1;
-      }
-      table.push(<CardDeck>{children}</CardDeck>)
-    }
-    return table
-  }
+    let children = []
+    });
   
+  }
 }
 
 export default withRouter(Dogs);

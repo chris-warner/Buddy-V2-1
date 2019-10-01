@@ -1,21 +1,35 @@
-import React from 'react';
-import axios from 'axios';
+import axios from "axios";
 
-class API {
-     getDatabase() {
-    var dogs = [];
-    var zipcodeArray = [];
-   
-    axios.get('/api/dogs/').then(res => {
-      dogs = res.data;
-      for (var i = 0; i < res.data.length; i++) {
-        zipcodeArray.push(res.data[i].shelterZipcode.toString())
-      }
-      console.log(this.state.dogs);
-      console.log(this.state.zipcodes)
+const shelters = [
+  "10409",
+  "10410"
+];
+// Export an object containing methods we'll use for accessing the random user API
+export default {
+  //original: getUsersByLanguage
+  //new: getDogsByShelter
+
+  getDogsByShelter: function(shelterzipcode) {
+    return new Promise((resolve, reject)=> {
+      axios.get("api/dogs").then((res)=> {
+        const dogs = res.data;
+        const results = dogs.map((dog) => {
+          return {
+            name: dog.name,
+            breed: dog.breed,
+            shelter: dog.shelterName,
+            image: dog.image,
+            shelterzip: shelterzipcode,
+          }
+        })
+        resolve(results);
+      }).catch((err) => reject(err));
+    })
+  },
+  // Return a Promise to simulate an async call
+  getShelterList: function() {
+    return new Promise((resolve)=> {
+      resolve(shelters);
     });
-    //All db contents should now be stores in global variables.
-   }
-}
-
-export default API;
+  }
+};
