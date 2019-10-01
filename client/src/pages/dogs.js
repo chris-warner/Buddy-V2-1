@@ -4,7 +4,7 @@ import FooterComponent from "../components/Footer/footer";
 import DogComponent from "../components/Dog/dog";
 import { CardDeck, Card } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
-import fakeDogs from '../FakeDataBase';
+import FakeDataBase from '../FakeDataBase';
 import Map from "../components/GoogleMap/map";
 import API from '../utils/API.js';
 
@@ -23,7 +23,7 @@ class Dogs extends React.Component {
     const state = this.props.location.state
     this.setState({
       dogs: API.getDogsByShelter('1014')
-      .then(res=>{console.log(res)}),
+      .then(res=>{this.createDogCardDecks()}),
       zip: this.props.location.search,
       results: this.createDogCardDecks()
     });
@@ -39,6 +39,7 @@ class Dogs extends React.Component {
         </div>
         <div className="myDogs">
           {this.state.results}
+        
         </div>
         <div>
           <Map></Map>
@@ -49,29 +50,16 @@ class Dogs extends React.Component {
       </div>
     );
   }
+  
 
   createDogCardDecks = () => {
-    var dogs =[];
-    dogs = this.state.dogs
+    API.getDogsByShelter('1014').then(res=>{
     let table = []
     let k = 0
     let children = []
-
-    dogs.forEach(function(dogs1) {
-      console.log(dogs1.name)
-          table.push( <DogComponent 
-            key={dogs1.name}
-            dogsId={dogs1.name} 
-            name={dogs1.name} 
-            age={dogs1.age} 
-            breed={dogs1.breed} image={dogs1.image}></DogComponent>)
-            // CardDeck.push(<CardDeck>{children}</CardDeck>)
-      });
-    return table
+    });
+  
   }
-  
 }
-  
-
 
 export default withRouter(Dogs);

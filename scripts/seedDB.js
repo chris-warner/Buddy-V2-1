@@ -39,7 +39,7 @@ const dogSeed = [
     "video": "url",
     "shelterName": "Animal Rescue",
     "shelterStreet": "65 Dog place",
-    "shelterZipcode": 10409,
+    "shelterZipcode": 10410,
     "shelterCity": "New Brunswick",
     "shelterState": "New Jersey",
     "shelterCountry": "United States",

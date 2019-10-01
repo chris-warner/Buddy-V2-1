@@ -8,7 +8,7 @@ import API from '../utils/API.js';
 
 let shelterZipCodeArray = [];
 class Home extends React.Component {
-  
+  //TODO MAP DOG STATE TO DOGCOMPONENT COMPONENTS IN DOG.JS.
   //ToDo add constructor, state, component did mount and axios function to store shelters in state.
   constructor(props) {
     super(props);
@@ -19,19 +19,6 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    // //temporary array to store db contents.
-    // let zipcodeArray = [];
-    // axios.get('/api/dogs/').then(res => {
-    //   this.setState({ dogs: res.data });
-    //   for (var i = 0; i < res.data.length; i++) {
-    //     zipcodeArray.push(res.data[i].shelterZipcode.toString())
-    //   }
-    //   //update state to temporary arraay.
-    //   this.setState({ zipcodes: zipcodeArray });
-    //   console.log(this.state.dogs);
-    //   console.log(this.state.zipcodes)
-    // });
-    // //All db contents should now be stores in components state and ready for
     this.loadDogs();
   };
 

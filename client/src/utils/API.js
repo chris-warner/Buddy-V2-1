@@ -12,7 +12,6 @@ export default {
   getDogsByShelter: function(shelterzipcode) {
     return new Promise((resolve, reject)=> {
       axios.get("api/dogs").then((res)=> {
-        console.log(res.data);
         const dogs = res.data;
         const results = dogs.map((dog) => {
           return {
