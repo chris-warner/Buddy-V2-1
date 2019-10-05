@@ -27,3 +27,5 @@ yarn-error.log*
 .vscode
 .env
 .node_modules
+client/node_modules/.cache/eslint-loader/d5835c3426bf977e0eb63644e03ba959ab038137.json.gz
+node_modules
